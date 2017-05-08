@@ -1,0 +1,5 @@
+# Query gnomAD chr1
+python vcfR.py -i sample_input.vcf -f https://storage.googleapis.com/gnomad-public/release-170228/vcf/genomes/gnomad.genomes.r2.0.1.sites.1.vcf.gz -o sample_out.vcf 
+# Query genome1000 chr1 phase.1
+python vcfR.py -i sample_input.vcf -f ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase1/analysis_results/integrated_call_sets/ALL.chr1.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.vcf.gz -o sample_out.vcf 
+
