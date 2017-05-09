@@ -5,17 +5,17 @@ tagline: Final Project
 ---
 
 Part 1.1 - Comparative Analysis of Personal Genomes
-------------------
+----------------------
 
 
 Table of Contents
------------------------
+----------------------
 1. [Introduction](#introduction)
 2. [Writing](#writing)
 3. [Coding](#coding)
 4. [Pipeline](#pipeline)
 5. [Conclusions](#conclusions)
-
+6. [References](#references)
 
 
 **Contributors**  
@@ -23,39 +23,63 @@ Table of Contents
 -   Coding: Dingjue Ji  
 -   Pipeline: Nir Neumark
 
+----------------------
+
 ### 1. Introduction <a name = "introduction"></a>
-With the completion of the Human Genome Project, scientists have made great progress in cataloging the breadth of human genetic variation. Large-scale reference data for genetic variation plays a crucial role for the clinical interpretation of sequenced DNA variants. In recent years, such data has been used to inform and validate pathogenicity metrics for various classes of mutation. For example, comparing the $\dots$
+With the completion of the Human Genome Project, scientists have made great progress in cataloging the breadth of human genetic variation. Large-scale reference data for genetic variation plays a crucial role for the clinical interpretation of sequenced DNA variants. In recent years, such data has been used to inform and validate pathogenicity metrics for various classes of mutation. These successes may soon allow for the widespread use of comparative analyses in interpreting personal genomes. In this project, we use such reference datasets to find information on individual variants in Carl's personal genome.  
+
+----------------------
 
 ### 2. Writing <a name = "writing"></a>
 
+----------------------
+
 #### 2.1 Instructions
-Describe the 1000 Genomes and gnomAD databases and what can be learned from collections of variants observed in large populations. How have these databases evolved over the past decade? 
+*Describe the 1000 Genomes and gnomAD databases and what can be learned from collections of variants observed in large populations. How have these databases evolved over the past decade?*
 
+----------------------
 
-#### 2.2 1000 Genomes Project
+#### 2.2 1000 Genomes Project 
 
 The 1000 Genomes Project was an international effort to sequence, for the first time, a large and diverse collection of human genomes (at least 1000). By the end of the 3 project phases, the consortium had sequenced 2,504 genomes from 26 global populations, including African, Admixed American, European, East Asian, and South Asian. Although newer datasets contain many times more individuals, the 1000 Genomes Project remains a useful and high-quality dataset for population-level genome analysis. 
 
+----------------------
+
+
 #### 2.3 Genome Aggregation Database
 
-The Genome Aggregation Database (gnomAD) is an expansion from the Exome Aggregation Consortium (ExAC), developed by the MacArthur Lab at the Broad Institute. gnomAD seeks to aggregate germ-line genome sequences from a large number of sources (including the 1000 Genomes Project). It does this by uniformly processing and filtering genomes from these different studies. The result is 138,632 genomes from 5 major continental populations. gnomAD provides a high-resolution picture of human genetic variation, allowing the analysis of very rare variants that had previously been undetected. 
+The Genome Aggregation Database (gnomAD) is an expansion from the Exome Aggregation Consortium (ExAC), developed by the MacArthur Lab at the Broad Institute. gnomAD seeks to aggregate germ-line exome sequences from a large number of sources (including the 1000 Genomes Project). It does this by uniformly processing and filtering exomes from these different studies. The result is 138,632 exomes from 5 major continental populations, 15,496 of which are whole genomes. gnomAD provides a high-resolution picture of human genetic variation, allowing the analysis of very rare variants that had previously been undetected. 
 
-#### 2.4 Other Databases
-1. DGV: Database of Genomic Variants
-2. DECIPHER: DatabasE of genomiC VarIation and Phenotype in Humans using Ensembl Resources
-3. EVA: EBI Variation Archive
-4. ExAC: Exome Aggregation Consortium
+----------------------
 
-#### 2.5 Applications to Personal Genome Analysis
+#### 2.4 Applications to Personal Genome Analysis
 
 Analysis of a personal genome involves evaluating its differences from the normal range of genetic variation. This normal range is inferred by comparison to many other genomes in some database. A variant identified as disease-causing or protein-knockout can be searched up in such a database to find how common it is. Very common variants may be dismissed as uninformative. Rare variants, on the other hand, are often considered to be highly penetrant. 
 
+----------------------
+
+#### 2.5 Evolution of Genomic Databases
+
+There have been three main areas of progress in genomic databases over the past decade: sample size, variant filtration, and data aggregation. 
+
+**Sample size**: The rise of next-generation sequencing has enabled the collection of massive amounts of data. Rapid improvements to efficiency, speed, and cost have increased the number of sequenced genomes and exomes documented in public databases. This has allowed unprecedented resolution for estimating allele frequencies, as well as identifying new variants. 
+
+**Variant filtration**: Sequencing errors and mapping artifacts increase false positives. Variant filtration strategies are still evolving, but techniques such as Variant Quality Score Recalibration (VQSR) have adopted machine learning techniques to integrate information from multiple QC metrics to identify true variants. Scientists are capable of confident SNP-calling, but further improvements can still be made for calling indels and structural variants, particularly in low-complexity regions. 
+
+**Data aggregation**: Combining data across a large number of studies is an efficient way to increase the sample size of a genomic database. However, uniform processing and other corrections are needed to account for issues like variable coverage and reference bias. Groups like the MacArthur Lab, which assembled the ExAC and gnomAD databases, have developed a number of techniques for effectively managing and processing exome data in the past few years. In the future, efforts of similar methods and scale could be performed for genomes as well. 
+
+___________________
 
 ### 3. Coding <a name = "coding"></a>
-$\dots$
 
+----------------------
 
-#### 3.1 Documentation:
+#### 3.1 Instructions:
+*Propose a tool that finds information on a subset of Carl’s variants in the gnomAD and 1000 genomes databases.*
+
+----------------------
+
+#### 3.2 Documentation:
 
 Online browser and API access are not straightforward for users interested in using their own variant call files (VCFs) to retrieve a slice from a very large database. We propose a tool, vcfR, to help users to use VCFs to query certain variants within a reference dataset. The reference can be a standalone file or a link. The reference can be customized and the searching process is fast given proper reference and sorted order of query by genome position. 
 The usage of vcfR is as follows: `python vcfR.py -i <input.vcf> -f <ref.vcf.gz> -o <output.vcf>`
@@ -74,31 +98,69 @@ Query 1000 Genomes chr1 phase 1
       integrated_call_sets/ALL.chr1.integrated_phase1_v3.20101123.
       snps_indels_svs.genotypes.vcf.gz -o sample_out.vcf
 
-#### 3.2 Results:
+----------------------
+
+#### 3.3 Results:
 $\dots$
 
+
+________________
 
 ### 4. Pipeline <a name = "pipeline"></a>
-$\dots$
 
-#### 4.1 Documentation:
-$\dots$
+----------------------
 
-#### 4.2 Results:
-We have built a tool to find population frequencies for the variants observed in Carl's genome, and see how many are private variants $\dots$
+#### 4.1 Instructions:
+*Identify and run a tool that finds the population frequencies for each of the variants observed in Carl’s genome and also look to see how many are private variants. How do these number change based on the two databases used?*
 
-There are $\dots$ differences between the 1000 Genomes and gnomAD datasets $\dots$
+----------------------
 
+#### 4.2 Documentation:
+To annotate large number of available NGS data, there is a large number of SNPs annotation tools available. Some of them are specific to some specific SNPs annotation. Some of the available SNPs annotation tools are: SNPeff, VEP, ANNOVAR, FATHMM, PhD-SNP, PolyPhen-2, SuSPect, F-SNP, AnnTools, SeattleSeq, SNPit, SCAN, Snap, SNPs&GO, LS-SNP, Snat, TREAT, TRAMS, Maviant, MutationTaster, SNPdat, Snpranker, NGS-SNP, SVA, VARIANT, SIFT, PhD-SNP and FAST-SNP. 
 
+##### 4.2.1 ANNOVAR
 
+We decided to work with ANNOVAR. This tool is suitable for pinpointing a small subset of functionally important variants. Uses mutation prediction approach for annotation. An important and probably highly desirable feature is that ANNOVAR can help identify subsets of variants based on comparison to other variant databases, for example, variants annotated in dbSNP or variants annotated in 1000 Genome Project. The exact variant, with same start and end positions, and with same observed alleles, will be identified.
+
+Variant calling, made by the Gerstein Lab located 3,559,138 SNPs and 789,969 indels. Using ANNOVAR, we performed a comparison against 1000genome (version 1000g2015aug) and gnomAD (both in build hg19).
+
+##### 4.2.2 Sample Command Lines
+**Download relevant databases:**  
+1.	`annotate_variation.pl -downdb 1000g2015aug humandb -buildver hg19`  
+2.	`annotate_variation.pl -buildver hg19 -downdb -webfrom annovar gnomad_genome humandb/`  
+**VCF conversion:**  
+1.	`convert2annovar.pl -format vcf4 -withfreq data/indel.vcf > data/indel.avinput`  
+2.	`convert2annovar.pl -format vcf4 -withfreq data/snp.vcf > data/snp.avinput`  
+**Analysis:**  
+1.	`annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver `  
+`hg19 -out indel data/indel.avinput humandb/`  
+2.	`annotate_variation.pl -filter -dbtype hg19_gnomad_genome -buildver `  
+`hg19 -out snp.gad data/snp.avinput humandb/`  
+
+----------------------
+
+#### 4.3 Results:
+A comparison of subjectZ with all individuals in 100genome: 95% of the SNPs (~3.4M) and 60% of the indels (469K) were found within some other people. 
+A comparison of subjectZ with all individuals in gnomAD: 97.5% of the SNPs (~3.5M) and 90% of the indels (709K) were found within some other people. 
+
+| Source | 1000 Genomes Known variants (dropped) | 1000 Genomes Unknown variants (filtered) | gnomAD Known variants (dropped) | gnomAD Unknown variants (filtered) | Total |
+|--------|--------|-------|--------|--------|--------|
+| indel | 469,754 | 320,215 | 709,146 | 80,823 | 789,969 |
+| snp | 3,381,358 | 177,780 | 3,476,922 | 82,216 | 3,559,138 |
+
+As we can see above, there is a variation of ~2.5-30\% when comparing to 1000genome and gnomAD. gnomAD find much more variants, as we expect, since it has a larger individual cohort. 
+
+______________
 
 ### 5. Conclusions <a name = "conclusions"></a>
 $\dots$
 
-
+______________
 
 ### 6. References <a name = "references"></a>
 1. The 1000 Genomes Project Consortium. A global reference for human genetic variation. Nature. 2015;526(7571):68-74. doi:10.1038/nature15393.
 2. Lek M, Karczewski KJ, Samocha KE, et al. Analysis of protein-coding genetic variation in 60,706 humans. bioRxiv. 2016;536(7616):30338. doi:10.1101/030338.
 3. Ashley EA. Towards precision medicine. Nat Rev Genet. 2016;17(9):507-522. doi:10.1038/nrg.2016.86.
+4. Wang K, Li M, Hakonarson H. ANNOVAR: Functional annotation of genetic variants from next-generation sequencing data, Nucleic Acids Research, 38:e164, 2010
+
  
