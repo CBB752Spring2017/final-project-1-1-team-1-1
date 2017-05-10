@@ -101,7 +101,13 @@ Query 1000 Genomes chr1 phase 1
 ----------------------
 
 #### 3.3 Results:
-$\dots$
+File "sample_input.vcf" records a subset of objectZ's variants(874 terms in total) on chromosome 1. We can use it as query to search matched information in databases. Here, we will show an example using vcfR.py to look for matches in gnomAD.
+The output files should be self-explanatory but sometimes users may also want to get annotations after the query. In this example, we will use '--anno' option to get annotations for matched terms. All the annotations will be saved into a json file named "sample_input_matched.json".
+	$ python vcfR.py -i sample_input.vcf -f 
+      https://storage.googleapis.com/gnomad-public/release-170228/vcf/
+      genomes/gnomad.genomes.r2.0.1.sites.1.vcf.gz -o sample_out.vcf --anno
+It would be easy to use tools or simple codes dealing with JSON files to get annotations. In this case, 854 variants are matched in genomAD. Users are able to retrieve information after simple processing of the JSON file, for example, 190 variants in coding region are identified and the type of sequence variants is recorded, for example, chr1:g.12783G>A : intron_variant, chr1:g.14464A>T : non_coding_transcript_exon_variant...
+Details for each entry could be found in files. Python 'json' package is recommended for further analysis.
 
 
 ________________
