@@ -17,6 +17,7 @@ parser = argparse.ArgumentParser(description='vcf parser')
 parser.add_argument('-i', '--input', help='input vcf', dest = 'i', required=True)
 parser.add_argument('-f', '--ref', help='reference vcf', dest = 'f', required=True)
 parser.add_argument('-o', '--ouput', help='matched vcf', dest = 'o', required=True)
+parser.add_argument('--anno', dest = 'a', help='annotation', action='store_true')
 args = parser.parse_args()
 query = args.i
 ref = args.f
@@ -44,6 +45,7 @@ with open(query, 'r') as vcf:
 k = 0
 reader = codecs.getreader('utf-8')
 content = reader(zf)
+matches = list()
 for line in content:
     if line.startswith('##'):
         pass
@@ -62,7 +64,29 @@ for line in content:
             continue
         elif bool(re.search('\s+'.join(queries[k]), line)):
             matchedfile.write(qlines[k])
+            matches.append(k)
             k = k + 1
             outfile.write(line)
 zf.close()
 
+if args.a:
+    import myvariant
+    import json
+    mv = myvariant.MyVariantInfo()
+    f = open(query.split('.')[0]+'_matched.json', 'w')
+    myjson = list()
+    for i in range(len(matches)):
+        tmp = queries[matches[i]]
+        if bool(re.search('^[0-9]', tmp[0])):
+            chr = 'chr'+str(tmp[0])
+        else:
+            chr = tmp[0]
+        pos = tmp[1]
+        left = tmp[3]
+        right = tmp[4]
+        query = chr+':'+'g.'+pos+left+'>'+right
+        q = mv.getvariant(query)
+        myjson.append(q)
+    json.dump(myjson, f)
+    f.close()
+        
