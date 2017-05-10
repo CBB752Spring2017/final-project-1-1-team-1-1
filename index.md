@@ -26,7 +26,7 @@ Table of Contents
 ----------------------
 
 ### 1. Introduction <a name = "introduction"></a>
-With the completion of the Human Genome Project, scientists have made great progress in cataloging the breadth of human genetic variation. Large-scale reference data for genetic variation plays a crucial role for the clinical interpretation of sequenced DNA variants. In recent years, such data has been used to inform and validate pathogenicity metrics for various classes of mutation. These successes may soon allow for the widespread use of comparative analyses in interpreting personal genomes. In this project, we use such reference datasets to find information on individual variants in Carl's personal genome.  
+With the completion of the Human Genome Project, scientists have made great progress in cataloging the breadth of human genetic variation. Large-scale reference data for genetic variation plays a crucial role for the clinical interpretation of sequenced DNA variants. In recent years, such data has been used to inform and validate pathogenicity metrics for various classes of mutations. These advancements may soon allow for the widespread use of comparative analyses in interpreting personal genomes. In this project, we use such reference datasets to find information on individual variants in Carl's personal genome.  
 
 ----------------------
 
@@ -41,20 +41,39 @@ With the completion of the Human Genome Project, scientists have made great prog
 
 #### 2.2 1000 Genomes Project 
 
-The 1000 Genomes Project was an international effort to sequence, for the first time, a large and diverse collection of human genomes (at least 1000). By the end of the 3 project phases, the consortium had sequenced 2,504 genomes from 26 global populations, including African, Admixed American, European, East Asian, and South Asian. Although newer datasets contain many times more individuals, the 1000 Genomes Project remains a useful and high-quality dataset for population-level genome analysis. 
+The 1000 Genomes Project was an international effort to sequence, for the first time, a large and diverse collection of human genomes (at least 1000). By the end of the 3 project phases, the consortium had sequenced 2,504 genomes from 26 global populations, including African, Admixed American, European, East Asian, and South Asian. With this many sequences, researchers were able to discover >95% of variants with minor allele frequencies higher than 1% (0.1-0.5% in gene regions). Additioanlly, it was found that, on average, each person carries 200-300 loss-of-function variants in annotated genes, and 50-100 variants (previously) implicated in inherited disorders. Although newer datasets contain many times more individuals, the 1000 Genomes Project remains a useful and high-quality dataset for population-level genome analysis. 
+
+**Figure 1**: Sample locations for the 1000 Genomes Project
+
+![](Writing/1000_Genomes_Project.png)  
 
 ----------------------
 
 
 #### 2.3 Genome Aggregation Database
 
-The Genome Aggregation Database (gnomAD) is an expansion from the Exome Aggregation Consortium (ExAC), developed by the MacArthur Lab at the Broad Institute. gnomAD seeks to aggregate germ-line exome sequences from a large number of sources (including the 1000 Genomes Project). It does this by uniformly processing and filtering exomes from these different studies. The result is 138,632 exomes from 5 major continental populations, 15,496 of which are whole genomes. gnomAD provides a high-resolution picture of human genetic variation, allowing the analysis of very rare variants that had previously been undetected. 
+The Genome Aggregation Database (gnomAD) is an expansion from the Exome Aggregation Consortium (ExAC), developed by the MacArthur Lab at the Broad Institute. gnomAD seeks to aggregate germ-line exome sequences from a large number of sources (including the 1000 Genomes Project, among many others). It does this by uniformly processing and filtering exomes from these different studies. The result is 138,632 exomes across major continental populations, 15,496 of which are whole genomes. gnomAD provides a high-resolution picture of human genetic variation, allowing the analysis of very rare variants that had previously been undetected. 
+
+**Table 1**: Populations represented in gnomAD
+
+|Population|Exomes|Genomes|Total|
+|----------|------|-------|-----|
+|African/African American (AFR)|7,652|4,368|12,020|
+|Latino (AMR)|16,791|419|17,210|
+|Ashkenazi Jewish (ASJ)|4,925|151|5,076|
+|East Asian (EAS)|8,624|811|9,435|
+|Finnish (FIN)|11,150|1,747|12,897|
+|Non-Finnish European (NFE)| 55,860|7,509|63,369|
+|South Asian (SAS)|15,391|0|15,391|
+|Other (OTH)|2,743|491|3,234|
+|**Total**|123,136|15,496|**138,632**|
+
 
 ----------------------
 
 #### 2.4 Applications to Personal Genome Analysis
 
-Analysis of a personal genome involves evaluating its differences from the normal range of genetic variation. This normal range is inferred by comparison to many other genomes in some database. A variant identified as disease-causing or protein-knockout can be searched up in such a database to find how common it is. Very common variants may be dismissed as uninformative. Rare variants, on the other hand, are often considered to be highly penetrant. 
+Analysis of a personal genome involves evaluating its differences from the normal range of genetic variation. This normal range is inferred by comparison to many other genomes in some database. A variant identified as disease-causing or protein-knockout can be searched up in such a database to find how common it is. Variants that are very common (relative to disease prevalence) may be dismissed as uninformative. Rare variants, on the other hand, are often considered to be highly penetrant. 
 
 ----------------------
 
@@ -63,6 +82,10 @@ Analysis of a personal genome involves evaluating its differences from the norma
 There have been three main areas of progress in genomic databases over the past decade: sample size, variant filtration, and data aggregation. 
 
 **Sample size**: The rise of next-generation sequencing has enabled the collection of massive amounts of data. Rapid improvements to efficiency, speed, and cost have increased the number of sequenced genomes and exomes documented in public databases. This has allowed unprecedented resolution for estimating allele frequencies, as well as identifying new variants. 
+
+**Figure 2**: Increased sample sizes in large-scale genomic databases
+
+![](Writing/exacv2_barplot_cut.png)  
 
 **Variant filtration**: Sequencing errors and mapping artifacts increase false positives. Variant filtration strategies are still evolving, but techniques such as Variant Quality Score Recalibration (VQSR) have adopted machine learning techniques to integrate information from multiple QC metrics to identify true variants. Scientists are capable of confident SNP-calling, but further improvements can still be made for calling indels and structural variants, particularly in low-complexity regions. 
 
@@ -111,7 +134,7 @@ ________________
 ----------------------
 
 #### 4.1 Instructions:
-*Identify and run a tool that finds the population frequencies for each of the variants observed in Carl’s genome and also look to see how many are private variants. How do these number change based on the two databases used?*
+*Identify and run a tool that finds the population frequencies for each of the variants observed in Carl’s genome and also look to see how many are private variants. How do these numbers change based on the two databases used?*
 
 ----------------------
 
@@ -140,20 +163,43 @@ Variant calling, made by the Gerstein Lab located 3,559,138 SNPs and 789,969 ind
 ----------------------
 
 #### 4.3 Results:
-A comparison of subjectZ with all individuals in 100genome: 95% of the SNPs (~3.4M) and 60% of the indels (469K) were found within some other people. 
-A comparison of subjectZ with all individuals in gnomAD: 97.5% of the SNPs (~3.5M) and 90% of the indels (709K) were found within some other people. 
+Allele frequencies were collected variants in both 1000 Genomes and in gnomAD. 
 
-| Source | 1000 Genomes Known variants (dropped) | 1000 Genomes Unknown variants (filtered) | gnomAD Known variants (dropped) | gnomAD Unknown variants (filtered) | Total |
+**Table 2**: Three examples from chromosome 1 in 1000 Genomes:
+
+|Location|Reference|Alternate|Minor Allele Frequency|
+|--------|---------|---------|----------------------|
+|49554   |A        |G        |0.063099 |
+|49298   |T        |C        |0.782149 |
+|54490   |G        |A        |0.096046 |
+
+**Table 3**: Three different examples from chromosome 1 in gnomAD:
+
+|Location|Reference|Alternate|Minor Allele Frequency|
+|--------|---------|---------|----------------------|
+|10144   |T        |C        |0.0007|
+|92004   |A        |G        |0.0387| 
+|108310  |T        |C        |0.2959|
+
+
+
+A comparison of subjectZ (Carl) with all individuals in 1000 Genomes: 95% of the SNPs (~3.4M) and 60% of the indels (469K) were found in at least 1 other individual. This leaves 5% of the SNPs (~178K) and 40% of the indels (320K) as private variants.  
+
+A comparison of subjectZ with all individuals in gnomAD: 97.5% of the SNPs (~3.5M) and 90% of the indels (709K) were found in at least 1 other individual. This leaves 2.5% of the SNPs (~82K) and 10% of the indels (81K) as private variants.  
+
+**Table 4**: Known and unknown variants in the 1000 Genomes Project (1KGP) and gnomAD
+
+| Source | 1KGP known variants | 1KGP unknown variants | gnomAD known variants | gnomAD unknown variants | Total |
 |--------|--------|-------|--------|--------|--------|
-| indel | 469,754 | 320,215 | 709,146 | 80,823 | 789,969 |
-| snp | 3,381,358 | 177,780 | 3,476,922 | 82,216 | 3,559,138 |
+| Indel | 469,754 | 320,215 | 709,146 | 80,823 | 789,969 |
+| SNP | 3,381,358 | 177,780 | 3,476,922 | 82,216 | 3,559,138 |
 
-As we can see above, there is a variation of ~2.5-30\% when comparing to 1000genome and gnomAD. gnomAD find much more variants, as we expect, since it has a larger individual cohort. 
+As we can see above, the proportion of private variants is different by 2.5% and 30% for SNPs and indels, respectively, when comparing 1000genome to gnomAD. gnomAD contains much more variants, as we expect, since it comes from a much larger cohort. 
 
 ______________
 
 ### 5. Conclusions <a name = "conclusions"></a>
-$\dots$
+A comparative analysis Carl's personal genome is useful for finding which variants are functionally important, and how common those variants are. We find that Carl has $\dots$. 
 
 ______________
 
@@ -162,5 +208,4 @@ ______________
 2. Lek M, Karczewski KJ, Samocha KE, et al. Analysis of protein-coding genetic variation in 60,706 humans. bioRxiv. 2016;536(7616):30338. doi:10.1101/030338.
 3. Ashley EA. Towards precision medicine. Nat Rev Genet. 2016;17(9):507-522. doi:10.1038/nrg.2016.86.
 4. Wang K, Li M, Hakonarson H. ANNOVAR: Functional annotation of genetic variants from next-generation sequencing data, Nucleic Acids Research, 38:e164, 2010
-
- 
+5. Oleksyk TK, Brukhin V, O’Brien SJ. The Genome Russia project: closing the largest remaining omission on the world Genome map. GigaScience. 2015;4:53. doi:10.1186/s13742-015-0095-0.
