@@ -52,7 +52,7 @@ The 1000 Genomes Project was an international effort to sequence, for the first 
 
 #### 2.3 Genome Aggregation Database
 
-The Genome Aggregation Database (gnomAD) is an expansion from the Exome Aggregation Consortium (ExAC), developed by the MacArthur Lab at the Broad Institute. gnomAD seeks to aggregate germ-line exome sequences from a large number of sources (including the 1000 Genomes Project, among many others). It does this by uniformly processing and filtering exomes from these different studies. The result is 138,632 exomes across major continental populations, 15,496 of which are whole genomes. gnomAD provides a high-resolution picture of human genetic variation, allowing the analysis of very rare variants that had previously been undetected. 
+The Genome Aggregation Database (gnomAD) is an expansion from the Exome Aggregation Consortium (ExAC), developed by the MacArthur Lab at the Broad Institute. gnomAD seeks to aggregate germ-line exome sequences from a large number of sources (including the 1000 Genomes Project, among many others). It does this by uniformly processing and filtering exomes from these different studies. The result is 138,632 exomes across major continental populations, 15,496 of which are whole genomes. gnomAD provides a high-resolution picture of human genetic variation, allowing the analysis of very rare variants that had previously been undetected. So far, researchers have identified almost 18 million variants in gnomAD exomes and 254 million in gnomAD genomes, including 7.5 million and 160 million that were previously unknown in coding and noncoding sequences, respectively. 
 
 **Table 1**: Populations represented in gnomAD
 
@@ -124,16 +124,16 @@ Query 1000 Genomes chr1 phase 1
 ----------------------
 
 #### 3.3 Results:
-File "sample_input.vcf" records a subset of objectZ's variants(874 terms in total) on chromosome 1. We can use it as query to search matched information in databases. Here, we will show an example using vcfR.py to look for matches in gnomAD.
+File "sample_input.vcf" records a subset of objectZ's variants (874 terms in total) in chromosome 1. We can use it as query to search matched information in databases. Here, we will show an example using vcfR.py to look for matches in gnomAD.
 The output files should be self-explanatory but sometimes users may also want to get annotations after the query. In this example, we will use '--anno' option to get annotations for matched terms. All the annotations will be saved into a json file named "sample_input_matched.json".
 
 	$ python vcfR.py -i sample_input.vcf -f 
       https://storage.googleapis.com/gnomad-public/release-170228/vcf/
       genomes/gnomad.genomes.r2.0.1.sites.1.vcf.gz -o sample_out.vcf --anno
 
-It would be easy to use tools or simple codes dealing with JSON files to get annotations. In this case, 854 variants are matched in genomAD. Users are able to retrieve information after simple processing of the JSON file, for example, 190 variants in coding region are identified and the type of sequence variants is recorded, for example, chr1:g.12783G>A : intron_variant, chr1:g.14464A>T : non_coding_transcript_exon_variant...
+It would be easy to use tools or simple codes dealing with JSON files to get annotations. In this case, 854 variants are matched in gnomAD. Users are able to retrieve information after simple processing of the JSON file, for example, 190 variants in coding region are identified and the type of sequence variants is recorded, for example, chr1:g.12783G>A : intron_variant, chr1:g.14464A>T : non_coding_transcript_exon_variant...
 
-Details for each entry could be found in files. Python 'json' package is recommended for further analysis.
+Details for each entry are be found in the Coding files. The Python 'json' package is recommended for further analysis.
 
 
 ________________
@@ -208,7 +208,7 @@ As we can see above, the proportion of private variants is different by 2.5% and
 ______________
 
 ### 5. Conclusions <a name = "conclusions"></a>
-A comparative analysis Carl's personal genome is useful for finding which variants are functionally important, and how common those variants are. We find that Carl has $\dots$. 
+A comparative analysis of Carl's personal genome is useful for finding which variants are functionally important, and how common those variants are. Here, we have developed tools and a pipeline for retrieving information on Carl's personal variants. Although the variants were too numerous to collect annotations on all of them in our time frame, we demonstrate that, based on the gnomAD dataset, 2.5% of Carl's SNPs and 10% of his indels are private variants. Additionally, our pipeline is able to collect allele frequency data for non-private variants. From here, it would not be a difficult next step to identify pathogenic annotations of shared variants as candidates for clinical reporting. 
 
 ______________
 
