@@ -107,8 +107,9 @@ The output files should be self-explanatory but sometimes users may also want to
 	$ python vcfR.py -i sample_input.vcf -f 
       https://storage.googleapis.com/gnomad-public/release-170228/vcf/
       genomes/gnomad.genomes.r2.0.1.sites.1.vcf.gz -o sample_out.vcf --anno
-    
+
 It would be easy to use tools or simple codes dealing with JSON files to get annotations. In this case, 854 variants are matched in genomAD. Users are able to retrieve information after simple processing of the JSON file, for example, 190 variants in coding region are identified and the type of sequence variants is recorded, for example, chr1:g.12783G>A : intron_variant, chr1:g.14464A>T : non_coding_transcript_exon_variant...
+
 Details for each entry could be found in files. Python 'json' package is recommended for further analysis.
 
 
