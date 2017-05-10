@@ -26,7 +26,7 @@ Table of Contents
 ----------------------
 
 ### 1. Introduction <a name = "introduction"></a>
-With the completion of the Human Genome Project, scientists have made great progress in cataloging the breadth of human genetic variation. Large-scale reference data for genetic variation plays a crucial role for the clinical interpretation of sequenced DNA variants. In recent years, such data has been used to inform and validate pathogenicity metrics for various classes of mutations. These advancements may soon allow for the widespread use of comparative analyses in interpreting personal genomes. In this project, we use such reference datasets to find information on individual variants in Carl's personal genome.  
+With the completion of the Human Genome Project, scientists have made great progress in cataloging the breadth of human genetic variation. Large-scale reference data for genetic variation plays a crucial role for the clinical interpretation of sequenced DNA variants. In recent years, such data has been used to inform and validate pathogenicity metrics for various classes of mutations. These advancements may soon allow for the widespread use of comparative analyses in interpreting personal genomes. In this project, we have developed tools to use reference datasets to find information on individual variants in Carl's personal genome.  
 
 ----------------------
 
@@ -73,7 +73,9 @@ The Genome Aggregation Database (gnomAD) is an expansion from the Exome Aggregat
 
 #### 2.4 Applications to Personal Genome Analysis
 
-Analysis of a personal genome involves evaluating its differences from the normal range of genetic variation. This normal range is inferred by comparison to many other genomes in some database. A variant identified as disease-causing or protein-knockout can be searched up in such a database to find how common it is. Variants that are very common (relative to disease prevalence) may be dismissed as uninformative. Rare variants, on the other hand, are often considered to be highly penetrant. 
+Much can be learned from collections of variants in large populations. The first such dataset (1000 Genomes) enabled estimation of the rate of de novo germline mutation, as well as the average number of each mutation class (truncation, loss-of-function, etc.) carried by each individual. Newer datasets have additionally enabled the identification of novel variants, accurate estimation of allele frequencies, and stratification by ancestral population groups.
+
+The clinical utility of carefully cataloging genetic diversity is clear. Analysis of a personal genome involves evaluating its differences from the normal range of genetic variation. This normal range is inferred by comparison to many other genomes in some database. A variant identified as disease-causing or protein-knockout can be searched up in such a database to find how common it is. Variants that are very common (relative to disease prevalence) may be dismissed as uninformative. Rare variants, on the other hand, are often considered to be highly penetrant. 
 
 ----------------------
 
