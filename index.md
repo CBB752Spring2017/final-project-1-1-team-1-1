@@ -18,11 +18,6 @@ Table of Contents
 6. [References](#references)
 
 
-**Contributors**  
--   Writing: James Diao  
--   Coding: Dingjue Ji  
--   Pipeline: Nir Neumark
-
 ----------------------
 
 ### 1. Introduction <a name = "introduction"></a>
